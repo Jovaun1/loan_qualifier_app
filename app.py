@@ -10,6 +10,7 @@ import sys
 import fire
 import questionary
 from pathlib import Path
+import csv
 
 from qualifier.utils.fileio import load_csv
 
@@ -110,6 +111,23 @@ def save_qualifying_loans(qualifying_loans):
     """
     # @TODO: Complete the usability dialog for savings the CSV Files.
     # YOUR CODE HERE!
+    if qualifying_loans is None or len(qualifying_loans) == 0:
+        print("No qualifying loans were found\nProgram is exiting.")
+    else:
+        print("You have some qualifying loans")
+        answer = questionary.text("Do you want to save them to csv file? (Enter yes or no) ").ask()
+        if answer == "yes":
+            csvpath = questionary.text("Enter a file path save the qualifying loans (.csv):").ask()
+            csvpath = Path(csvpath)
+            if not csvpath.exists():
+                sys.exit(f"Oops! Can't find this path: {csvpath}")
+            with open(csvpath, "w", newline='') as f:
+                csvwriter = csv.writer(f)
+                for item in qualifying_loans:
+                    csvwriter.writerow(item)
+
+
+
 
 
 def run():
