@@ -1,0 +1,12 @@
+git init
+git remote add origin git@github.com:Jovaun1/loan_qualifier_app.git
+git add -A
+git commit -m "commiting starter code"
+git push origin main
+git add -A
+git commit -m "Updates teh Readme.md file."
+git push origin main
+git add -A
+git commit -m "Implemented save_qualifing_loans() method in app.py. "
+git push origin main
+git add -A
